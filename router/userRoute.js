@@ -14,58 +14,58 @@ router.get('/', (req, res) => {
       ssn: '555-55-5555',
     },
   });
+});
 
-  router.post('/', (req, res) => {
-    const user = {
-      name: req.body.name,
-      address: req.body.address,
-      city: req.body.city,
-      state: req.body.state,
-      zip: req.body.zip,
-      ccNumber: req.body.ccNumber,
-      ssn: req.body.ssn,
-    };
+router.post('/', (req, res) => {
+  const user = {
+    name: req.body.name,
+    address: req.body.address,
+    city: req.body.city,
+    state: req.body.state,
+    zip: req.body.zip,
+    ccNumber: req.body.ccNumber,
+    ssn: req.body.ssn,
+  };
 
-    res.status(201).json({
-      message: 'Successful Post',
-      user: user,
-    });
-  });
-
-  router.patch('/:id', (req, res) => {
-    console.log('Patch');
-    const user = {
-      _id: req.params.id,
-      name: req.body.name,
-      address: req.body.address,
-      city: req.body.city,
-      state: req.body.state,
-      zip: req.body.zip,
-      ccNumber: req.body.ccNumber,
-      ssn: req.body.ssn,
-    };
-
-    res.status(201).json({
-      message: 'Successful Patch',
-      user: user,
-      metadata: {
-        modifiedCount: 1,
-        acknowledged: true,
-      },
-    });
-  });
-
-  router.delete('/:id', (req, res) => {
-    const id = req.params.id;
-    res.status(200).json({
-      message: 'Successful Delete',
-      user: null,
-      id: id,
-      metadata: {
-        modifiedCount: 1,
-        acknowledged: true,
-      },
-    });
+  res.status(201).json({
+    message: 'Successful Post',
+    user: user,
   });
 });
+
+router.patch('/:id', (req, res) => {
+  const user = {
+    _id: req.params.id,
+    name: req.body.name,
+    address: req.body.address,
+    city: req.body.city,
+    state: req.body.state,
+    zip: req.body.zip,
+    ccNumber: req.body.ccNumber,
+    ssn: req.body.ssn,
+  };
+
+  res.status(201).json({
+    message: 'Successful Patch',
+    user: user,
+    metadata: {
+      modifiedCount: 1,
+      acknowledged: true,
+    },
+  });
+});
+
+router.delete('/:id', (req, res) => {
+  const id = req.params.id;
+  res.status(200).json({
+    message: 'Successful Delete',
+    user: null,
+    id: id,
+    metadata: {
+      modifiedCount: 1,
+      acknowledged: true,
+    },
+  });
+});
+
 module.exports = router;
